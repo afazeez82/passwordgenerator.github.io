@@ -1,38 +1,30 @@
-var length = Number(prompt("How many characters would you like your password to be?"));
-while (isNaN(length) || length < 8 || length > 128) length = Number(prompt("Length must be 8-128 characters. How many characters would you like your password to be?"));
-var uppers = confirm("Would you like to use uppercase letters?");
-console.log(uppers);
-var lowers = confirm("Would you like to use lowercase letters?");
-var numbers = confirm("Would you like to use numbers?");
+
+//sending the prompt questions to gather information to generate the password based on the users feedback
+var passwordLength = Number(prompt("How many characters would you like your password to be?"));
+while (isNaN(passwordLength) || passwordLength < 8 || passwordLength > 128) 
+    passwordLength = Number(prompt("passwordLength must be 8-128 characters. How many characters would you like your password to be?"));
+var upperCase = confirm("Would you like to use uppercase letters?");
+var lowerCase = confirm("Would you like to use lowercase letters?");
+var isNumbers = confirm("Would you like to use isNumbers?");
 var symbols = confirm("Would you like to use special characters?");
-while (!uppers && !lowers && !numbers && !symbols) {
+while (!upperCase && !lowerCase && !isNumbers && !symbols) {
     alert("You must select at least one character type!");
-    uppers = confirm("Would you like to use uppercase letters?");
-    lowers = confirm("Would you like to use lowercase letters?");
-    numbers = confirm("Would you like to use numbers?");
+    upperCase = confirm("Would you like to use uppercase letters?");
+    lowerCase = confirm("Would you like to use lowercase letters?");
+    isNumbers = confirm("Would you like to use isNumbers?");
     symbols = confirm("Would you like to use special characters?");
 }
-//    window.addEventListener('load', function() {
-//  generateNewPassword();
-//    });
-//function to generate password
+
+//this function generates password based on the values stored in the above variables
 function generateNewPassword() {
     var password = "";
-    var allowed = {};
-    if (uppers) password += rando(allowed.uppers = "QWERTYUIOPASDFGHJKLZXCVBNM");
-    if (lowers) password += rando(allowed.lowers = "qwertyuiopasdfghjklzxcvbnm");
-    if (numbers) password += rando(allowed.numbers = "1234567890");
-    if (symbols) password += rando(allowed.symbols = "!@#$%^&*(){}[]=<>/,.");
-    //create for loop to choose password character 
-    for (var i = password.length; i < length; i++) 
-        password += rando(rando(allowed).value);
+    var passwordCategory = {};
+    if (upperCase) password += rando(passwordCategory.upperCase = "QWERTYUIOPASDFGHJKLZXCVBNM");
+    console.log(passwordCategory.upperCase);
+    if (lowerCase) password += rando(passwordCategory.lowerCase = "qwertyuiopasdfghjklzxcvbnm");
+    if (isNumbers) password += rando(passwordCategory.isNumbers = "1234567890");
+    if (symbols) password += rando(passwordCategory.symbols = "!@#$%^&*(){}[]=<>/,.");
+    //creating password
+    for (var i = password.passwordLength; i < passwordLength; i++) 
+        password += rando(rando(passwordCategory).value);
         document.getElementById("password").value = randoSequence(password).join("");
-    //add password to previously generated passwords section
-    // document.getElementById("lastNums").innerHTML += password + "<br />"
-}
-//function to copy password to clipboard
-// function copyPassword() {
-//     document.getElementById("password").select();
-//     document.execCommand("Copy");
-//     alert("Password copied to clipboard!");
-// }
